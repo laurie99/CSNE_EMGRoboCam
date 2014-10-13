@@ -11,7 +11,10 @@ def cameraLauncher(status):
     device.set_configuration()
 
     # check the Goniometer first
-    Gonio = [(status[2]+status[3])/2, (status[4]+status[5])/2]
+    Gonio = [status[3], status[5]]
+    #Gonio = [(status[2]+status[3])/2, (status[4]+status[5])/2]
+    print Gonio
+
     if Gonio[0] >= 0 or Gonio[1] >= 0:
         if Gonio[0] >= 0 and Gonio[0] > Gonio[1]:
             print "turn Down"
@@ -31,4 +34,5 @@ def cameraLauncher(status):
         print "Stop"
         device.ctrl_transfer(0x21,0x09,0,0,[0x02,0x20,0x00,0x00,0x00,0x00,0x00,0x00])
 
+    #print status
     return
